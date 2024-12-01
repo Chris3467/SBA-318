@@ -23,4 +23,45 @@ router.post("/", (req, res) => {
   console.log(newComment);
 });
 
+// DELETE
+router.delete("/", (req, res) => {
+  const { name } = req.params;
+  console.log("delete");
+  const index = comments.findIndex(
+    (comment) => comment.name === parseInt(name)
+  );
+
+  if (index === -1) {
+    res.status(404).json({ error: "comment not found" });
+    return;
+  }
+  console.log(comments, "before splice");
+  comments.splice(index, 1);
+  console.log(comments);
+  res.redirect("/");
+});
+
+// PATCH
+/* router.patch("/:id", (req, res) => {
+  const { id } = req.params;
+  const { image, name, genre, year, score } = req.body;
+  const index = comments.findIndex((comment) => comment.id === parseInt(id));
+
+  if (index === -1) {
+    res.status(404).json({ error: "movie not found" });
+    return;
+  }
+
+  comments[index] = {
+    id: parseInt(id),
+    image,
+    name,
+    genre,
+    year,
+    score,
+  };
+
+  res.json(comments[index]);
+}); */
+
 module.exports = router;

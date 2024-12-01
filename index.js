@@ -1,4 +1,5 @@
 const express = require("express");
+const methodOverride = require("method-override");
 const app = express();
 const port = 3000;
 
@@ -23,6 +24,8 @@ const logRequestData = (req, res, next) => {
   next();
 };
 app.use(logRequestData);
+
+app.use(methodOverride("_method"));
 
 // Routes
 app.use("/indexRoute", indexRoute);
