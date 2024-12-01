@@ -25,11 +25,11 @@ router.post("/", (req, res) => {
 
 // DELETE
 router.delete("/", (req, res) => {
-  const { name } = req.params;
+  const { name } = req.params.name;
   console.log("delete");
-  const index = comments.findIndex(
-    (comment) => comment.name === parseInt(name)
-  );
+  console.log(comments);
+  console.log(name);
+  const index = comments.findIndex((comment) => comment.name === name);
 
   if (index === -1) {
     res.status(404).json({ error: "comment not found" });
