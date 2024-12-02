@@ -74,4 +74,18 @@ router.patch("/", (req, res) => {
   res.redirect("/indexRoute");
 });
 
+// Query Parameters
+router.get("/search", (req, res) => {
+  const { genre } = req.query;
+
+  const filteredComments = comments.filter(
+    (comment) => comment.genre === genre
+  );
+
+  res.render("indexRoute", {
+    title: "Search Results",
+    comments: filteredComments,
+  });
+});
+
 module.exports = router;
