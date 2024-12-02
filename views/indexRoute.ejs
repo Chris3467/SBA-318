@@ -139,8 +139,12 @@
         </form>
         <br /><br />
         <h2>Remove a Movie!</h2>
-        <form action="/indexRoute" method="DELETE">
-          <input type="hidden" name="_method" value="DELETE" />
+        <form
+          method="post"
+          action="/indexRoute/?_method=DELETE"
+          style="display: inline"
+        >
+          <!-- <input type="hidden" name="_method" value="DELETE" />-->
           <label for="movieId">Movie Name:</label>
           <input type="text" name="name" placeholder="Movie Name" required />
           <br /><br />

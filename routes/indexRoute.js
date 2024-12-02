@@ -25,43 +25,36 @@ router.post("/", (req, res) => {
 
 // DELETE
 router.delete("/", (req, res) => {
-  const { name } = req.params.name;
-  console.log("delete");
-  console.log(comments);
-  console.log(name);
+  const name = req.body.name;
+  // console.log("delete");
+  // console.log(comments);
+  // console.log(name);
   const index = comments.findIndex((comment) => comment.name === name);
 
   if (index === -1) {
     res.status(404).json({ error: "comment not found" });
     return;
   }
-  console.log(comments, "before splice");
+  //console.log(comments, "before splice");
   comments.splice(index, 1);
-  console.log(comments);
-  res.redirect("/");
+  //console.log(comments);
+  res.redirect("/indexRoute");
 });
 
-// PATCH
-/* router.patch("/:id", (req, res) => {
-  const { id } = req.params;
-  const { image, name, genre, year, score } = req.body;
-  const index = comments.findIndex((comment) => comment.id === parseInt(id));
+// Code below does not work
+/* router.delete("/", (req, res) => {
+  
+  const { name } = req.params.name;
+
+  const index = comments.findIndex((comment) => comment.name === name);
 
   if (index === -1) {
-    res.status(404).json({ error: "movie not found" });
+    res.status(404).json({ error: "comment not found" });
     return;
   }
-
-  comments[index] = {
-    id: parseInt(id),
-    image,
-    name,
-    genre,
-    year,
-    score,
-  };
-
-  res.json(comments[index]);
+  console.log(comments, "before slice");
+  comments.splice(index, 1);
+  res.redirect("/");
 }); */
 
 module.exports = router;
