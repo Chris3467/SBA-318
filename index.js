@@ -4,6 +4,8 @@ const app = express();
 const port = 3000;
 
 const indexRoute = require("./routes/indexRoute.js");
+const postRoute = require("./routes/postRoute.js");
+const userRoute = require("./routes/userRoute.js");
 
 // View Engine
 app.set("views", "views");
@@ -29,9 +31,8 @@ app.use(methodOverride("_method"));
 
 // Routes
 app.use("/indexRoute", indexRoute);
-/* app.use("/users", users);
-app.use("/posts", posts);
-app.use("/comments", comments); */
+app.use("/users", userRoute);
+app.use("/posts", postRoute);
 
 app.listen(port, () => {
   console.log("I can hear you");

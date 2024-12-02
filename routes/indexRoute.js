@@ -57,4 +57,21 @@ router.delete("/", (req, res) => {
   res.redirect("/");
 }); */
 
+// PATCH
+router.patch("/", (req, res) => {
+  const { name, genre, year, score } = req.body;
+  const index = comments.findIndex((comment) => comment.name === name);
+
+  if (index === -1) {
+    res.status(404).json({ error: "comment not found" });
+    return;
+  }
+
+  comments[index].genre = genre;
+  comments[index].year = year;
+  comments[index].score = score;
+
+  res.redirect("/indexRoute");
+});
+
 module.exports = router;
